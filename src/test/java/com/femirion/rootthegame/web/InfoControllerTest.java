@@ -11,7 +11,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -25,13 +24,20 @@ public class InfoControllerTest {
     private MockMvc mockMvc;
 
     @Test
+    public void getFactionInfo() throws Exception {
+        mockMvc.perform(get(FACTION_INFOS_URL + "/VAGABOND"))
+               .andExpect(status().isOk())
+               .andExpect(content().json("{\"name\":\"VAGABOND_NAME\",\"desc\":\"VAGABOND_DESC\",\"official\":true}"));
+    }
+
+    @Test
     public void getFactionInfos() throws Exception {
         mockMvc.perform(get(FACTION_INFOS_URL))
                .andExpect(status().isOk())
                .andExpect(content().json("[" +
                                                  "{\"name\":\"VAGABOND_NAME\",\"desc\":\"VAGABOND_DESC\",\"official\":true}," +
-                                                 "{\"name\":\"EYRIE_DYNASTIES_NAME\"," +
-                                                 "\"desc\":\"EYRIE_DYNASTIES_DESC\",\"official\":true}," +
+                                                 "{\"name\":\"DYNASTIES_NAME\"," +
+                                                 "\"desc\":\"DYNASTIES_DESC\",\"official\":true}," +
                                                  "{\"name\":\"WOODLAND_ALLIANCE_NAME\"," +
                                                  "\"desc\":\"WOODLAND_ALLIANCE_DESC\",\"official\":true}," +
                                                  "{\"name\":\"MARQUISE_DE_CAT_NAME\"," +

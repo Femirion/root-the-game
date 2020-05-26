@@ -1,8 +1,8 @@
 package com.femirion.rootthegame.model.type;
 
-public enum Faction {
+public enum FactionType {
     MARQUISE_DE_CAT,
-    EYRIE_DYNASTIES,
+    DYNASTIES,
     WOODLAND_ALLIANCE,
     VAGABOND;
 }
